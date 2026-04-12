@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'News App',
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.generalScreen,
+      initialRoute: AppRoutes.homeScreen,
       routes: {
         AppRoutes.homeScreen: (context) => HomeScreen(),
         AppRoutes.generalScreen: (context) => GeneralScreen(),
