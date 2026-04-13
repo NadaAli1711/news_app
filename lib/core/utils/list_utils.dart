@@ -21,7 +21,7 @@ class ListUtils {
     AppAssets.healthWhite,
     AppAssets.scienceWhite,
   ];
-  static List<String> titles = [
+  static List<String> get titles => [
     'general'.tr(),
     'business'.tr(),
     'sport'.tr(),
@@ -30,4 +30,6 @@ class ListUtils {
     'health'.tr(),
     'science'.tr(),
   ];
+  static List<String> languages = ['english', 'arabic'];
+  static List<String> languagesCodes = ['en', 'ar'];
 }

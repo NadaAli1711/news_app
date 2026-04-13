@@ -5,8 +5,6 @@ import 'package:news_app/core/utils/app_theme.dart';
 import 'package:news_app/ui/screens/general_screen.dart';
 import 'package:news_app/ui/screens/home_screen.dart';
 import 'package:provider/provider.dart';
-
-import 'core/providers/language_provider.dart';
 import 'core/providers/theme_provider.dart';
 
 void main() async{
@@ -20,7 +18,6 @@ void main() async{
 
       child: MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (_) => LanguageProvider()),
           ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ],
         child: MyApp(),
