@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
 
 import 'app_assets.dart';
 
@@ -22,14 +21,14 @@ class ListUtils {
     AppAssets.healthWhite,
     AppAssets.scienceWhite,
   ];
-  static List<String> get titles => [
-    'general'.tr(),
-    'business'.tr(),
-    'sport'.tr(),
-    'technology'.tr(),
-    'entertainment'.tr(),
-    'health'.tr(),
-    'science'.tr(),
+  static List<String> titles = [
+    'general',
+    'business',
+    'sport',
+    'technology',
+    'entertainment',
+    'health',
+    'science',
   ];
 
 

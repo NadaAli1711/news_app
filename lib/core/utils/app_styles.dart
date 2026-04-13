@@ -59,4 +59,9 @@ class AppStyles {
     fontSize: 24,
     fontWeight: .bold
   );
+  static TextStyle  grey12Medium = GoogleFonts.inter(
+    color: AppColors.grey,
+    fontSize: 12,
+    fontWeight: .w500
+  );
 }

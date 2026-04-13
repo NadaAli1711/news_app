@@ -8,6 +8,4 @@ class AssetsRes {
 
   static const String PROJECT_NAME = 'news_app';
   static const String PROJECT_VERSION = '1.0.0+1';
-  static const String NEWS_LOGO_DARK = 'assets/images/news_logo_dark.png';
-  static const String NEWS_LOGO_LIGHT = 'assets/images/news_logo_light.png';
 }
