@@ -3,22 +3,31 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/core/utils/app_colors.dart';
 import 'package:news_app/core/utils/app_styles.dart';
+import 'package:provider/provider.dart';
 
-class LanguageDropdown extends StatefulWidget {
-  const LanguageDropdown({super.key});
+import '../../../core/providers/theme_provider.dart';
+
+class ThemeDropdown2 extends StatefulWidget {
+
+  const ThemeDropdown2({super.key});
 
   @override
-  State<LanguageDropdown> createState() => _LanguageDropdownState();
+  State<ThemeDropdown2> createState() => _ThemeDropdown2State();
 }
 
-class _LanguageDropdownState extends State<LanguageDropdown> {
-  static List<String> languages = ['english', 'arabic'];
-  static List<String> languagesCodes = ['en', 'ar'];
+class _ThemeDropdown2State extends State<ThemeDropdown2> {
+  static List<String> themes = ['light', 'dark'];
+  static List<ThemeMode> themeValues = [ThemeMode.light, ThemeMode.dark];
+  // Map<String, ThemeMode> themeMap = {
+  //   'light': ThemeMode.light,
+  //   'dark': ThemeMode.dark,
+  // };
   @override
   Widget build(BuildContext context) {
-    return DropdownButtonFormField2<String>(
+    var themeProvider = Provider.of<ThemeProvider>(context);
+    return DropdownButtonFormField2<ThemeMode>(
       hint: Text(
-        languages[languagesCodes.indexOf(context.locale.languageCode)].tr(),
+        themes[themeValues.indexOf(themeProvider.themeMode)].tr(),
         style: AppStyles.white16Bold,
       ),
 
@@ -33,18 +42,18 @@ class _LanguageDropdownState extends State<LanguageDropdown> {
         focusedBorder: buildBorder,
       ),
 
-      items: languages
+      items: themes
           .map(
-            (item) => DropdownItem<String>(
-              value: languagesCodes[languages.indexOf(item)],
+            (item) => DropdownItem<ThemeMode>(
+              value: themeValues[themes.indexOf(item)],
               child: Text(item.tr(), style: AppStyles.black16Bold),
             ),
           )
           .toList(),
 
-      onChanged: (languageCode)async {
-        if (languageCode != null) {
-          await context.setLocale(Locale(languageCode));
+      onChanged: (currentThemeMode) {
+        if (currentThemeMode != null) {
+          themeProvider.changeTheme(currentThemeMode);
         }
       },
       iconStyleData: const IconStyleData(
