@@ -1,4 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/core/providers/language_provider.dart';
 import 'package:news_app/core/utils/app_colors.dart';
@@ -21,7 +22,7 @@ class _LanguageDropdownState
     var languageProvider = Provider.of<LanguageProvider>(context);
     return DropdownButtonFormField2<String>(
      hint: Text(
-       '${languageProvider.languages[languageProvider.languagesCodes.indexOf(languageProvider.currentLanguageCode)]}',
+       '${languageProvider.languages[languageProvider.languagesCodes.indexOf(languageProvider.currentLanguageCode)].tr()}',
        style: AppStyles.white16Bold,
      ),
 
@@ -49,7 +50,7 @@ class _LanguageDropdownState
 
       onChanged: (languageCode) {
         if (languageCode != null) {
-          languageProvider.changeLanguage(languageCode);
+          languageProvider.changeLanguage(languageCode,context);
         }
       },
       iconStyleData: const IconStyleData(

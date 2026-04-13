@@ -1,3 +1,21 @@
 {
-
+  "home": "Home",
+  "good_morning_news_message": "Good Morning\nHere is Some News For You",
+  "news_app": "News App",
+  "go_to_home": "Go To Home",
+  "theme": "Theme",
+  "language": "Language",
+  "light": "Light",
+  "dark": "Dark",
+  "general": "General",
+  "business": "Business",
+  "sport": "Sport",
+  "technology": "Technology",
+  "entertainment": "Entertainment",
+  "health": "Health",
+  "science": "Science",
+  "arabic": "Arabic",
+  "english": "English",
+  "try_again": "Try Again",
+  "view_all": "View All"
 }

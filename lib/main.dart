@@ -36,6 +36,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     var themeProvider = Provider.of<ThemeProvider>(context);
     return MaterialApp(
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       title: 'News App',
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.homeScreen,

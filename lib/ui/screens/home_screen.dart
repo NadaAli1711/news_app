@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/core/providers/theme_provider.dart';
 import 'package:news_app/core/utils/app_assets.dart';
@@ -21,7 +22,7 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            Header(headerText: 'Home'),
+            Header(headerText: 'home'.tr()),
             Expanded(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: width * 0.05),
@@ -29,7 +30,7 @@ class HomeScreen extends StatelessWidget {
                   spacing: height * 0.02,
                   children: [
                     Text(
-                      'Good Morning\nHere is Some News For You',
+                      'good_morning_news_message'.tr(),
                       style: Theme.of(context).textTheme.headlineLarge,
                     ),
                     VerticalListView(),

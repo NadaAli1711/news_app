@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/models/source_response.dart';
@@ -20,7 +21,7 @@ class Customfuturebuilder extends StatelessWidget {
           return Column(
             children: [
               Text({snapshot.error}.toString()),
-              ElevatedButton(onPressed: () {}, child: Text('Try Again')),
+              ElevatedButton(onPressed: () {}, child: Text('try_again'.tr())),
             ],
           );
         }
@@ -28,7 +29,7 @@ class Customfuturebuilder extends StatelessWidget {
           return Column(
             children: [
               Text({snapshot.data!.message}.toString()),
-              ElevatedButton(onPressed: () {}, child: Text('Try Again')),
+              ElevatedButton(onPressed: () {}, child: Text('try_again'.tr())),
             ],
           );
         }
