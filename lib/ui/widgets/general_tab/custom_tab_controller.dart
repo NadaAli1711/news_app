@@ -43,30 +43,31 @@ class _CustomTabControllerState extends State<CustomTabController> {
               return SourceTab(sourceName: source.name ?? '',isSelected: selectedIndex == widget.sources.indexOf(source),);
             }).toList(),
           ),
-          // Expanded(child:
-          // TabBarView(children: widget.sources.map((source) {
-          //   return CustomFutureBuilder<ArticlesResponse>(
-          //     future: ApiManager.fetchArticles(
-          //       context: context,
-          //       sources: source.id ?? '',
-          //     ),
-          //     onSuccess: (context, data) => Expanded(
-          //       child: Padding(
-          //         padding: EdgeInsets.symmetric(horizontal: width * 0.04),
-          //         child: ListView.separated(
-          //           itemCount: data.articles?.length ?? 0,
-          //           itemBuilder: (context, index) {
-          //             return ArticleCard(
-          //               article: data.articles?[index] ?? Articles(),
-          //             );
-          //           },
-          //           separatorBuilder: (context, index) =>
-          //               SizedBox(height: height * 0.02),
-          //         ),
-          //       ),
-          //     ),
-          //   );
-          // }).toList(),))
+          Expanded(
+            child: TabBarView(children: widget.sources.map((source) {
+              return CustomFutureBuilder<ArticlesResponse>(
+                future: ApiManager.fetchArticles(
+                  context: context,
+                  sources: source.id ?? '',
+                ),
+                onSuccess: (context, data) => Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: width * 0.04),
+                    child: ListView.separated(
+                      itemCount: data.articles?.length ?? 0,
+                      itemBuilder: (context, index) {
+                        return ArticleCard(
+                          article: data.articles?[index] ?? Articles(),
+                        );
+                      },
+                      separatorBuilder: (context, index) =>
+                          SizedBox(height: height * 0.02),
+                    ),
+                  ),
+                ),
+              );
+            }).toList(),),
+          )
         ],
       ),
     );

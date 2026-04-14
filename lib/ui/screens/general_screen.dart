@@ -21,7 +21,6 @@ class _GeneralScreenState extends State<GeneralScreen> {
   @override
   Widget build(BuildContext context) {
     double height = context.height;
-    double width = context.width;
     String category = ModalRoute.of(context)?.settings.arguments as String;
 
     return Scaffold(
@@ -36,36 +35,8 @@ class _GeneralScreenState extends State<GeneralScreen> {
                 context: context,
                 category: category,
               ),
-              onSuccess: (context, data) =>
-                  Expanded(
-                    child: Column(
-                      spacing: height * 0.03,
-                      children: [
-                        CustomTabController(sources: data.sources ?? []),
-                        CustomFutureBuilder<ArticlesResponse>(
-                          future: ApiManager.fetchArticles(
-                            context: context,
-                            sources: 'bbc-news',
-                          ),
-                          onSuccess: (context, data) => Expanded(
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: width * 0.04),
-                              child: ListView.separated(
-                                itemCount: data.articles?.length ?? 0,
-                                itemBuilder: (context, index) {
-                                  return ArticleCard(
-                                    article: data.articles?[index] ?? Articles(),
-                                  );
-                                },
-                                separatorBuilder: (context, index) =>
-                                    SizedBox(height: height * 0.02),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+              onSuccess: (context, data) =>Expanded(child: CustomTabController(sources: data.sources ?? [])),
+
             ),
 
           ],
