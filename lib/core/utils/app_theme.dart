@@ -14,6 +14,7 @@ class AppTheme {
       headlineLarge: AppStyles.black24Medium,
       headlineMedium: AppStyles.white24Bold,
       headlineSmall: AppStyles.white14Medium,
+      labelMedium: AppStyles.white16Bold,
     ),
   );
   static final ThemeData darkTheme = ThemeData(
@@ -27,6 +28,7 @@ class AppTheme {
       headlineLarge: AppStyles.white24Medium,
       headlineMedium: AppStyles.black24Bold,
       headlineSmall: AppStyles.black14Medium,
+      labelMedium: AppStyles.black16Bold,
     ),
   );
 }

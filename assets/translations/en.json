@@ -16,6 +16,10 @@
   "science": "Science",
   "arabic": "Arabic",
   "english": "English",
+  "search": "Search",
+  "start_searching": "Start Searching",
+  "no_data_found": "No Data Found ...",
+  "some_thing_went_wrong": "Some thing went wrong",
   "try_again": "Try Again",
   "view_all": "View All",
   "view_full_article": "View Full Article"

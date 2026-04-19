@@ -3,7 +3,6 @@ import 'package:news_app/core/utils/app_routes.dart';
 import 'package:news_app/core/utils/list_utils.dart';
 import 'package:news_app/ui/widgets/category_list_view/view_all_row.dart';
 import 'dart:ui' as ui;
-import '../../../core/utils/api_utils/api_manager.dart';
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_context.dart';
 

@@ -4,7 +4,9 @@ import 'package:news_app/core/utils/app_routes.dart';
 import 'package:news_app/core/utils/app_theme.dart';
 import 'package:news_app/ui/screens/general_screen.dart';
 import 'package:news_app/ui/screens/home_screen.dart';
+import 'package:news_app/ui/screens/search_screen.dart';
 import 'package:provider/provider.dart';
+import 'core/providers/search_provider.dart';
 import 'core/providers/theme_provider.dart';
 
 void main() async{
@@ -19,6 +21,7 @@ void main() async{
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => ThemeProvider()),
+          ChangeNotifierProvider(create: (_) => SearchProvider()),
         ],
         child: MyApp(),
       ),
@@ -42,6 +45,7 @@ class MyApp extends StatelessWidget {
       routes: {
         AppRoutes.homeScreen: (context) => HomeScreen(),
         AppRoutes.generalScreen: (context) => GeneralScreen(),
+        AppRoutes.searchScreen: (context) => ChangeNotifierProvider(create: (context) => SearchProvider(),child: SearchScreen(),),
       },
       themeMode: themeProvider.themeMode,
       darkTheme: AppTheme.darkTheme,

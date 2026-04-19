@@ -1,14 +1,17 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'main_circular_progress_indicator.dart';
+import 'error_column.dart';
 
 class CustomFutureBuilder<T> extends StatelessWidget {
   final Future<T> future;
-  final Widget Function(BuildContext context,T data)  onSuccess;
+  final Widget Function(BuildContext context, T data) onSuccess;
 
-  const CustomFutureBuilder({super.key
-  , required this.future
-  , required this.onSuccess});
+  const CustomFutureBuilder({
+    super.key,
+    required this.future,
+    required this.onSuccess,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,24 +22,13 @@ class CustomFutureBuilder<T> extends StatelessWidget {
           return MainCircularProgressIndicator();
         }
         if (snapshot.hasError) {
-          return Column(
-            children: [
-              Text({snapshot.error}.toString()),
-              ElevatedButton(onPressed: () {}, child: Text('try_again'.tr())),
-            ],
-          );
+          return ErrorColumn(errorMessage: {snapshot.error}.toString());
         }
         final response = snapshot.data as dynamic;
         if (response?.status != 'ok') {
-          return Column(
-            children: [
-              Text({response!.message}.toString()),
-              ElevatedButton(onPressed: () {}, child: Text('try_again'.tr())),
-            ],
-          );
+          return ErrorColumn(errorMessage: {response!.message}.toString());
         }
-        return onSuccess(context,response!);
-
+        return onSuccess(context, response!);
       },
     );
   }

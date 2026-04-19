@@ -16,6 +16,10 @@
   "science": "علوم",
   "arabic": "العربية",
   "english": "الإنجليزية",
+  "search": "بحث",
+  "start_searching": "ابدا بالبحث الان",
+  "some_thing_went_wrong": "عذراً، وقع خطأ ما",
+  "no_data_found": "لم يتم العثور على نتائج",
   "try_again": "أعد المحاولة",
   "view_all": "عرض الكل",
   "view_full_article": "اعرض المقاله كامله"
