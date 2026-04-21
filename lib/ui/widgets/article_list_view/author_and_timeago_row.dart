@@ -21,8 +21,8 @@ class AuthorAndTimeAgoRow extends StatelessWidget {
       children: [
         Flexible(
           child: Text(author != null && author!.isNotEmpty?
-            'By : ${author}'
-                : 'News Source',
+            "${'by'.tr()} $author"
+                : 'unknown_author'.tr(),
             maxLines: 2,
             overflow: .ellipsis,
             style: AppStyles.grey12Medium,
@@ -41,4 +41,5 @@ class AuthorAndTimeAgoRow extends StatelessWidget {
       ],
     );
   }
+
 }

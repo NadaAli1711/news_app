@@ -7,21 +7,11 @@ import 'package:provider/provider.dart';
 
 import '../../../core/providers/theme_provider.dart';
 
-class ThemeDropdown2 extends StatefulWidget {
-
+class ThemeDropdown2 extends StatelessWidget {
   const ThemeDropdown2({super.key});
 
-  @override
-  State<ThemeDropdown2> createState() => _ThemeDropdown2State();
-}
-
-class _ThemeDropdown2State extends State<ThemeDropdown2> {
   static List<String> themes = ['light', 'dark'];
   static List<ThemeMode> themeValues = [ThemeMode.light, ThemeMode.dark];
-  // Map<String, ThemeMode> themeMap = {
-  //   'light': ThemeMode.light,
-  //   'dark': ThemeMode.dark,
-  // };
   @override
   Widget build(BuildContext context) {
     var themeProvider = Provider.of<ThemeProvider>(context);

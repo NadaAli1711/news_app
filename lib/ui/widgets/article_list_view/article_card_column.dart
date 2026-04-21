@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/core/utils/app_context.dart';
 
 import '../../../core/models/articles_response.dart';
 import 'author_and_timeago_row.dart';
@@ -15,10 +16,9 @@ class ArticleCardColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 4,
-      child: Column(
-        mainAxisAlignment: .spaceBetween,
+    double height = context.height;
+    return Column(
+        spacing: height * 0.03,
         children: [
           isBottomSheet? Text(
             article.description ?? '',
@@ -34,7 +34,7 @@ class ArticleCardColumn extends StatelessWidget {
 
           ),
         ],
-      ),
+
     );
   }
 }

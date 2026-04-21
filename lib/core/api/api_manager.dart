@@ -9,61 +9,80 @@ import '../models/source_response.dart';
 import 'api_constants.dart';
 import 'end_points.dart';
 
-
 class ApiManager {
-  static Future<SourceResponse> fetchSources({required BuildContext context,required String category}) async {
+  static Future<SourceResponse> fetchSources({
+    required BuildContext context,
+    required String category,
+  }) async {
     Uri url = Uri.https(ApiConstants.baseUrl, EndPoints.getSource, {
       'apiKey': ApiConstants.apiKey,
-      'language':context.locale.languageCode,
-      'category':category
+      'language': context.locale.languageCode,
+      'category': category,
     });
     try {
       var response = await http.get(url);
+
       /// get the body of the response as string
       String bodyString = response.body;
+
       /// convert string into json
-     var json = jsonDecode(bodyString);
+      var json = jsonDecode(bodyString);
+
       /// convert json into object
       return SourceResponse.fromJson(json);
-
     } catch (e) {
       rethrow;
     }
   }
-  static Future<ArticlesResponse> fetchArticles({required BuildContext context,required String sources}) async {
+
+  static Future<ArticlesResponse> fetchArticles({
+    required BuildContext context,
+    required String sources,
+  }) async {
     Uri url = Uri.https(ApiConstants.baseUrl, EndPoints.getArticle, {
       'apiKey': ApiConstants.apiKey,
-      'sources':sources,
+      'sources': sources,
     });
     try {
       var response = await http.get(url);
+
       /// get the body of the response as string
       String bodyString = response.body;
+
       /// convert string into json
-     var json = jsonDecode(bodyString);
+      var json = jsonDecode(bodyString);
+
       /// convert json into object
       return ArticlesResponse.fromJson(json);
-
     } catch (e) {
       rethrow;
     }
   }
-  static Future<ArticlesResponse> fetchEveryThing({required BuildContext context,required String searchString}) async {
+
+  static Future<ArticlesResponse> fetchEveryThing({
+    required BuildContext context,
+    required String searchString,
+    page = 1,
+    pageSize = 10,
+  }) async {
     Uri url = Uri.https(ApiConstants.baseUrl, EndPoints.getEveryThing, {
       'apiKey': ApiConstants.apiKey,
-      'q':searchString,
+      'q': searchString,
+      'page': page.toString(),
+      'pageSize': pageSize.toString(),
       // 'searchIn':'title,content'
-
     });
     try {
       var response = await http.get(url);
+
       /// get the body of the response as string
       String bodyString = response.body;
+
       /// convert string into json
-     var json = jsonDecode(bodyString);
+      var json = jsonDecode(bodyString);
+
       /// convert json into object
       return ArticlesResponse.fromJson(json);
-
     } catch (e) {
       rethrow;
     }

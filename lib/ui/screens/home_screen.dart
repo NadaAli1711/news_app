@@ -22,16 +22,18 @@ class HomeScreen extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-                child: Column(
-                  crossAxisAlignment: .start,
-                  spacing: height * 0.02,
-                  children: [
-                    Text(
-                      'good_morning_news_message'.tr(),
-                      style: Theme.of(context).textTheme.headlineLarge,
-                    ),
-                    VerticalListView(),
-                  ],
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: .start,
+                    spacing: height * 0.02,
+                    children: [
+                      Text(
+                        'good_morning_news_message'.tr(),
+                        style: Theme.of(context).textTheme.headlineLarge,
+                      ),
+                      VerticalListView(),
+                    ],
+                  ),
                 ),
               ),
             ),

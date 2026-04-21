@@ -7,6 +7,11 @@ class AppTheme {
     scaffoldBackgroundColor: AppColors.white,
     primaryColor: AppColors.black,
     cardColor: AppColors.white,
+    textSelectionTheme: TextSelectionThemeData(
+      selectionHandleColor: AppColors.transparent,
+      cursorColor: AppColors.black,
+      selectionColor: AppColors.greyOpcity20,
+    ),
     textTheme: TextTheme(
       bodyLarge: AppStyles.black20Medium,
       bodyMedium: AppStyles.black16Bold,
@@ -21,6 +26,11 @@ class AppTheme {
     scaffoldBackgroundColor: AppColors.black,
     primaryColor: AppColors.white,
     cardColor: AppColors.black,
+    textSelectionTheme: TextSelectionThemeData(
+      selectionHandleColor: AppColors.transparent,
+      cursorColor: AppColors.white,
+      selectionColor: AppColors.whiteOpcity20,
+    ),
     textTheme: TextTheme(
       bodyLarge: AppStyles.white20Medium,
       bodyMedium: AppStyles.white16Bold,

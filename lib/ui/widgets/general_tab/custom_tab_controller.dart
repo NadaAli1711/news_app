@@ -3,69 +3,94 @@ import 'package:flutter/material.dart';
 import 'package:news_app/core/utils/app_colors.dart';
 import 'package:news_app/core/utils/app_context.dart';
 import 'package:news_app/ui/widgets/general_tab/source_tab.dart';
-
-import '../../../core/models/articles_response.dart' hide Source;
-import '../../../core/models/source_response.dart';
-import '../../../core/api/api_manager.dart';
+import 'package:provider/provider.dart';
+import '../../../core/providers/articles_provider.dart';
+import '../../../core/providers/source_provider.dart';
 import '../article_list_view/article_list_view.dart';
-import '../future_builder/custom_future_builder.dart';
-import '../header/header.dart';
-import '../search/search_text_field.dart';
+import '../future_builder/error_column.dart';
+import '../future_builder/main_circular_progress_indicator.dart';
 
 class CustomTabController extends StatefulWidget {
-  final List<Source> sources;
-  const CustomTabController({super.key, required this.sources});
+  const CustomTabController({super.key});
 
   @override
   State<CustomTabController> createState() => _CustomTabControllerState();
 }
 
 class _CustomTabControllerState extends State<CustomTabController> {
-  int selectedIndex = 0;
-  List<Articles>? articles;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      var sourceProvider = Provider.of<SourceProvider>(context, listen: false);
+      var articlesProvider = Provider.of<ArticlesProvider>(
+        context,
+        listen: false,
+      );
+      if (sourceProvider.sourceResponse?.sources?.isNotEmpty ?? false) {
+        articlesProvider.fetchArticles(
+          context: context,
+          source: sourceProvider.sourceResponse!.sources![0],
+        );
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    var sourceProvider = Provider.of<SourceProvider>(context);
+    var articlesProvider = Provider.of<ArticlesProvider>(context);
+    var sources = sourceProvider.sourceResponse?.sources ?? [];
     double height = context.height;
     return DefaultTabController(
-      length: widget.sources.length,
+      length: sources.length,
       child: Column(
         spacing: height * 0.03,
         children: [
-           Column(
-            children: [
-              Header(headerText: 'general'.tr()),
-              TabBar(
-                onTap: (index) {
-                  selectedIndex = index;
-                  setState(() {});
-                },
-                indicatorColor: Theme.of(context).primaryColor,
-                dividerColor: AppColors.transparent,
-                tabAlignment: .start,
-                isScrollable: true,
-                tabs: widget.sources.map((source) {
-                  return SourceTab(
-                    sourceName: source.name ?? '',
-                    isSelected:
-                    selectedIndex == widget.sources.indexOf(source),
-                  );
-                }).toList(),
-              ),
-            ],
+          TabBar(
+            onTap: (index) {
+              sourceProvider.setTabIndex(index: index);
+              articlesProvider.fetchArticles(
+                context: context,
+                source: sources[index],
+              );
+            },
+            indicatorColor: Theme.of(context).primaryColor,
+            dividerColor: AppColors.transparent,
+            tabAlignment: .start,
+            isScrollable: true,
+            tabs: sources.map((source) {
+              return SourceTab(
+                sourceName: source.name ?? '',
+                isSelected: sourceProvider.tabIndex == sources.indexOf(source),
+              );
+            }).toList(),
           ),
 
-         Expanded(
+          Expanded(
             child: TabBarView(
-              children: widget.sources.map((source) {
-                return CustomFutureBuilder<ArticlesResponse>(
-                  future: ApiManager.fetchArticles(
-                    context: context,
-                    sources: source.id ?? '',
-                  ),
-                  onSuccess: (context, data) {
-                    articles = data.articles;
-                     return ArticleListView(articles:articles);},
-                );
+              children: sources.map((source) {
+                return articlesProvider.isLoading
+                    ? Center(child: MainCircularProgressIndicator())
+                    : articlesProvider.errorMessage != null
+                    ? ErrorColumn(
+                        onPressed: () => articlesProvider.fetchArticles(
+                          context: context,
+                          source: sources[sourceProvider.tabIndex],
+                        ),
+                        errorMessage:
+                            articlesProvider.errorMessage ??
+                            'some_thing_went_wrong'.tr(),
+                      )
+                    : articlesProvider.articlesResponse == null
+                    ? Center(child: Text('no_data_found'.tr()))
+                    : (articlesProvider.articlesResponse?.articles?.isEmpty ??
+                          false)
+                    ? Center(child: Text('no_data_found'.tr()))
+                    : ArticleListView(
+                        articles: articlesProvider.articlesResponse?.articles,
+                      );
               }).toList(),
             ),
           ),

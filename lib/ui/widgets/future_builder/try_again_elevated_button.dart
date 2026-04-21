@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:news_app/core/utils/app_context.dart';
 
 class TryAgainElevatedButton extends StatelessWidget {
-  const TryAgainElevatedButton({super.key});
+  final VoidCallback onPressed;
+  const TryAgainElevatedButton({super.key,required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +17,6 @@ class TryAgainElevatedButton extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
-    ),onPressed: () {}, child: Text('try_again'.tr(),style:Theme.of(context).textTheme.labelMedium));
+    ),onPressed: onPressed, child: Text('try_again'.tr(),style:Theme.of(context).textTheme.labelMedium));
   }
 }

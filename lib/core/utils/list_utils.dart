@@ -24,7 +24,7 @@ class ListUtils {
   static List<String> titles = [
     'general',
     'business',
-    'sport',
+    'sports',
     'technology',
     'entertainment',
     'health',

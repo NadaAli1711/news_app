@@ -6,8 +6,10 @@ import 'article_card.dart';
 
 class ArticleListView extends StatelessWidget {
   final List<Articles>? articles;
+  final ScrollController? controller;
   const ArticleListView({super.key,
-    this.articles
+    this.articles,
+    this.controller
   });
 
   @override
@@ -15,19 +17,18 @@ class ArticleListView extends StatelessWidget {
 
     double height = context.height;
     double width = context.width;
-    return Expanded(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: width * 0.04),
-        child: ListView.separated(
-          itemCount: articles?.length ?? 0,
-          itemBuilder: (context, index) {
-            return ArticleCard(
-              article:articles?[index] ?? Articles(),
-            );
-          },
-          separatorBuilder: (context, index) =>
-              SizedBox(height: height * 0.02),
-        ),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: width * 0.04),
+      child: ListView.separated(
+        controller: controller,
+        itemCount: articles?.length ?? 0,
+        itemBuilder: (context, index) {
+          return ArticleCard(
+            article:articles?[index] ?? Articles(),
+          );
+        },
+        separatorBuilder: (context, index) =>
+            SizedBox(height: height * 0.02),
       ),
     );
   }

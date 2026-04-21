@@ -9,14 +9,15 @@ class VerticalListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = context.height;
-    return Expanded(
-      child: ListView.separated(
-        itemBuilder: (context, index) {
-          return CategoryContainer(index: index);
-        },
-        separatorBuilder: (context, index) => SizedBox(height: height * 0.02),
-        itemCount: ListUtils.blackImages.length,
-      ),
+
+    return ListView.separated(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      itemBuilder: (context, index) {
+        return CategoryContainer(index: index);
+      },
+      separatorBuilder: (context, index) => SizedBox(height: height * 0.02),
+      itemCount: ListUtils.blackImages.length,
     );
   }
 }

@@ -16,5 +16,8 @@ class AppAssets {
   static const String sportWhite = 'assets/images/sport_white.png';
   static const String technologyBlack = 'assets/images/technology_black.png';
   static const String technologyWhite = 'assets/images/technology_white.png';
+  static const String notFoundImage = 'assets/images/not_found.png';
+  static const String lottieLoadingAnimation = 'assets/animations/loading-animation.json';
+  static const String lottieBlueLoadingAnimation = 'assets/animations/blue_loading_animation.json';
 
 }

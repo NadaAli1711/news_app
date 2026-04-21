@@ -43,6 +43,8 @@ dependencies:
   flutter_native_splash: ^2.4.7
   timeago: ^3.7.1
   url_launcher: ^6.3.2
+  lottie: ^3.3.3
+  cached_network_image: ^3.4.1
 
 dev_dependencies:
   flutter_test:
@@ -97,5 +99,6 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
   assets:
+    - assets/animations/
     - assets/images/
     - assets/translations/

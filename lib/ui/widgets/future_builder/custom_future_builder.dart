@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'main_circular_progress_indicator.dart';
 import 'error_column.dart';
@@ -22,11 +21,11 @@ class CustomFutureBuilder<T> extends StatelessWidget {
           return MainCircularProgressIndicator();
         }
         if (snapshot.hasError) {
-          return ErrorColumn(errorMessage: {snapshot.error}.toString());
+          return ErrorColumn(onPressed:(){},errorMessage: {snapshot.error}.toString());
         }
         final response = snapshot.data as dynamic;
         if (response?.status != 'ok') {
-          return ErrorColumn(errorMessage: {response!.message}.toString());
+          return ErrorColumn(onPressed:(){},errorMessage: {response!.message}.toString());
         }
         return onSuccess(context, response!);
       },
