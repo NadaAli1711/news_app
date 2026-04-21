@@ -1,46 +1,67 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'app_colors.dart';
 
 class AppStyles {
-  static const TextStyle  white16Bold = TextStyle(
+  static TextStyle  white16Bold = GoogleFonts.inter(
     color: AppColors.white,
     fontSize: 16,
     fontWeight: .bold,
   );
-  static const TextStyle  white14Medium = TextStyle(
+  static TextStyle  white14Medium = GoogleFonts.inter(
     color: AppColors.white,
     fontSize: 14,
     fontWeight: .w500
   );
-  static const TextStyle  white20Medium = TextStyle(
+  static TextStyle  white20Medium = GoogleFonts.inter(
     color: AppColors.white,
     fontSize: 20,
     fontWeight: .w500
   );
-  static const TextStyle  white20Bold = TextStyle(
+  static TextStyle  white24Medium = GoogleFonts.inter(
+      color: AppColors.white,
+      fontSize: 24,
+      fontWeight: .w500
+  );
+  static TextStyle  white24Bold = GoogleFonts.inter(
+      color: AppColors.white,
+      fontSize: 24,
+      fontWeight: .bold
+  );
+  static TextStyle  black24Medium = GoogleFonts.inter(
+      color: AppColors.black,
+      fontSize: 24,
+      fontWeight: .w500
+  );
+  static TextStyle  white20Bold = GoogleFonts.inter(
     color: AppColors.white,
     fontSize: 20,
     fontWeight: .bold
   );
-  static const TextStyle  black16Bold = TextStyle(
+  static TextStyle  black16Bold = GoogleFonts.inter(
     color: AppColors.black,
     fontSize: 16,
     fontWeight: .bold,
   );
-  static const TextStyle  black14Medium = TextStyle(
+  static TextStyle  black14Medium = GoogleFonts.inter(
     color: AppColors.black,
     fontSize: 14,
     fontWeight: .w500
   );
-  static const TextStyle  black20Medium = TextStyle(
+  static TextStyle  black20Medium = GoogleFonts.inter(
     color: AppColors.black,
     fontSize: 20,
     fontWeight: .w500
   );
-  static const TextStyle  black24Bold = TextStyle(
+  static TextStyle  black24Bold = GoogleFonts.inter(
     color: AppColors.black,
     fontSize: 24,
     fontWeight: .bold
+  );
+  static TextStyle  grey12Medium = GoogleFonts.inter(
+    color: AppColors.grey,
+    fontSize: 12,
+    fontWeight: .w500
   );
 }

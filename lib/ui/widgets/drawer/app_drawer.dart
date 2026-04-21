@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/core/utils/app_routes.dart';
 
@@ -24,7 +25,7 @@ class AppDrawer extends StatelessWidget {
             decoration: BoxDecoration(color: AppColors.white),
             child: Center(
               child: Text(
-                'News App',
+                'news_app'.tr(),
                 style: AppStyles.black24Bold,
                 textAlign: .center,
               ),
@@ -40,18 +41,18 @@ class AppDrawer extends StatelessWidget {
                   },
                   child: DrawerSection(
                     iconName: AppAssets.homeIcon,
-                    rowText: 'Go To Home',
+                    rowText: 'go_to_home'.tr(),
                   
                   ),
                 ),
                 DrawerSection(
                   iconName: AppAssets.themeIcon,
-                  rowText: 'Them',
+                  rowText: 'theme'.tr(),
                   hasThemeDropdown: true,
                 ),
                 DrawerSection(
                   iconName: AppAssets.worldIcon,
-                  rowText: 'Language',
+                  rowText: 'language'.tr(),
                   hasLanguageDropdown: true,
                   hasDivider: false,
                 ),

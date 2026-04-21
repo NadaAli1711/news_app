@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/core/utils/app_colors.dart';
 import 'package:news_app/core/utils/app_styles.dart';
@@ -31,13 +32,13 @@ class _ThemeDropdownState
         ),
       ),
       items:[
-        const DropdownMenuItem(
+        DropdownMenuItem(
           value: ThemeMode.light,
-          child: Text('Light'),
+          child: Text('light'.tr()),
         ),
-        const DropdownMenuItem(
+        DropdownMenuItem(
           value: ThemeMode.dark,
-          child: Text('Dark'),
+          child: Text('dark'.tr()),
         ),
       ],
       onChanged:(newMode) {
