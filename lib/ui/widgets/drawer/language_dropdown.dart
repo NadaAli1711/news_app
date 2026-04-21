@@ -1,30 +1,24 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app/core/providers/language_provider.dart';
+import 'package:news_app/core/providers/source_provider.dart';
 import 'package:news_app/core/utils/app_colors.dart';
 import 'package:news_app/core/utils/app_styles.dart';
 import 'package:provider/provider.dart';
 
-
-class LanguageDropdown extends StatefulWidget {
+class LanguageDropdown extends StatelessWidget {
   const LanguageDropdown({super.key});
 
-  @override
-  State<LanguageDropdown> createState() =>
-      _LanguageDropdownState();
-}
-
-class _LanguageDropdownState
-    extends State<LanguageDropdown> {
+  static List<String> languages = ['english', 'arabic'];
+  static List<String> languagesCodes = ['en', 'ar'];
   @override
   Widget build(BuildContext context) {
-    var languageProvider = Provider.of<LanguageProvider>(context);
+    var sourceProvider = Provider.of<SourceProvider>(context);
     return DropdownButtonFormField2<String>(
-     hint: Text(
-       '${languageProvider.languages[languageProvider.languagesCodes.indexOf(languageProvider.currentLanguageCode)]}',
-       style: AppStyles.white16Bold,
-     ),
-
+      hint: Text(
+        languages[languagesCodes.indexOf(context.locale.languageCode)].tr(),
+        style: AppStyles.white16Bold,
+      ),
 
       isExpanded: true,
       decoration: InputDecoration(
@@ -37,19 +31,19 @@ class _LanguageDropdownState
         focusedBorder: buildBorder,
       ),
 
-      items: languageProvider.languages
+      items: languages
           .map(
             (item) => DropdownItem<String>(
-              value: languageProvider
-                  .languagesCodes[languageProvider.languages.indexOf(item)],
-              child: Text(item, style: AppStyles.black16Bold),
+              value: languagesCodes[languages.indexOf(item)],
+              child: Text(item.tr(), style: AppStyles.black16Bold),
             ),
           )
           .toList(),
 
-      onChanged: (languageCode) {
+      onChanged: (languageCode) async {
         if (languageCode != null) {
-          languageProvider.changeLanguage(languageCode);
+          await context.setLocale(Locale(languageCode));
+          sourceProvider.fetchSources(context: context, category: sourceProvider.category);
         }
       },
       iconStyleData: const IconStyleData(

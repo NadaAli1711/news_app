@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/ui/widgets/drawer/theme_dropdown.dart';
+import 'package:news_app/ui/widgets/drawer/theme_dropdown2.dart';
 import '../../../core/utils/app_context.dart';
 import 'drawer_row.dart';
 import 'language_dropdown.dart';
@@ -26,7 +27,8 @@ class DrawerSection extends StatelessWidget {
         spacing: height*0.02,
         children: [
           DrawerRow(text: rowText, iconName: iconName),
-          if(hasThemeDropdown) ThemeDropdown(),
+          // if(hasThemeDropdown) ThemeDropdown(),
+          if(hasThemeDropdown) ThemeDropdown2(),
           if(hasLanguageDropdown) LanguageDropdown(),
           if(hasDivider) const Divider(color: Colors.white,thickness: 1,),
         ],
