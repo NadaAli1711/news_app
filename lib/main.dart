@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/core/utils/app_routes.dart';
 import 'package:news_app/core/utils/app_theme.dart';
@@ -11,9 +12,11 @@ import 'core/providers/articles_provider.dart';
 import 'core/providers/search_provider.dart';
 import 'core/providers/source_provider.dart';
 import 'core/providers/theme_provider.dart';
+import 'firebase_options.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await EasyLocalization.ensureInitialized();
   timeago.setLocaleMessages('ar', timeago.ArMessages());
   runApp(
@@ -27,7 +30,6 @@ void main() async{
           ChangeNotifierProvider(create: (_) => ThemeProvider()),
           ChangeNotifierProvider(create: (_) => ArticlesProvider()),
           ChangeNotifierProvider(create: (_) => SourceProvider()),
-
         ],
         child: MyApp(),
       ),
@@ -49,9 +51,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.homeScreen,
       routes: {
-        AppRoutes.homeScreen: (context) => HomeScreen() ,
-        AppRoutes.detailsScreen: (context) => DetailsScreen() ,
-        AppRoutes.searchScreen: (context) => ChangeNotifierProvider(create: (context) => SearchProvider(),child: SearchScreen(),),
+        AppRoutes.homeScreen: (context) => HomeScreen(),
+        AppRoutes.detailsScreen: (context) => DetailsScreen(),
+        AppRoutes.searchScreen: (context) => ChangeNotifierProvider(
+          create: (context) => SearchProvider(),
+          child: SearchScreen(),
+        ),
       },
       themeMode: themeProvider.themeMode,
       darkTheme: AppTheme.darkTheme,
