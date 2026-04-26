@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../api/api_manager.dart';
+import '../api/dio/dio_manager.dart';
+
 import '../models/articles_response.dart';
 
 class SearchProvider extends ChangeNotifier {
@@ -40,7 +42,7 @@ class SearchProvider extends ChangeNotifier {
 
     try {
       await Future.delayed(Duration(seconds: 2));
-      articlesResponse = await ApiManager.fetchEveryThing(
+      articlesResponse = await DioManager.fetchEveryThing(
         context: context,
         searchString: currentSearchString,
         page: currentPage,

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 import '../api/api_manager.dart';
+import '../api/dio/dio_manager.dart';
 import '../models/articles_response.dart';
 import '../models/source_response.dart';
 
@@ -16,7 +17,7 @@ class ArticlesProvider extends ChangeNotifier {
     errorMessage = null;
     notifyListeners();
     try {
-      articlesResponse = await ApiManager.fetchArticles(
+      articlesResponse = await DioManager.fetchArticles(
         context: context,
         sources: source.id ?? '',
       );

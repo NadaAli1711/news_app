@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../api/api_manager.dart';
+import '../api/dio/dio_manager.dart';
 import '../models/source_response.dart';
 
 class SourceProvider extends ChangeNotifier {
@@ -31,7 +32,7 @@ class SourceProvider extends ChangeNotifier {
     errorMessage = null;
     notifyListeners();
     try {
-      sourceResponse = await ApiManager.fetchSources(
+      sourceResponse = await DioManager.fetchSources(
         context: context,
         category: category,
       );
