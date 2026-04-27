@@ -18,11 +18,12 @@ class DioManager {
             // headers: {
             //   'X-Api-Key': ApiConstants.apiKey
             // }
+
           ),
         )
         ..interceptors.addAll(
           {DioInterceptor(), PrettyDioLogger()},
-        ); // or use LogInterceprot() instead and i can change the default inside them
+        ); // or use LogInterceptor() instead and i can change the default inside them
   static Future<SourceResponse> fetchSources({
     required BuildContext context,
     required String category,

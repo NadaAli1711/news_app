@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../api/api_manager.dart';
@@ -21,11 +22,11 @@ class ArticlesProvider extends ChangeNotifier {
         context: context,
         sources: source.id ?? '',
       );
-      if (articlesResponse?.status == 'error') {
-        errorMessage = articlesResponse?.message;
-      }
     } catch (e) {
-      errorMessage = e.toString();
+      if(e is DioException){
+        errorMessage= e.message;
+      }else{
+      errorMessage = e.toString();}
     } finally {
       isLoading = false;
       notifyListeners();

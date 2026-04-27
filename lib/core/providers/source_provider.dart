@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import '../api/api_manager.dart';
@@ -36,11 +37,11 @@ class SourceProvider extends ChangeNotifier {
         context: context,
         category: category,
       );
-      if (sourceResponse?.status == 'error') {
-        errorMessage = sourceResponse?.message;
-      }
     } catch (e) {
-      errorMessage = e.toString();
+      if(e is DioException){
+        errorMessage= e.message;
+      }else{
+      errorMessage = e.toString();}
     } finally {
       isLoading = false;
       notifyListeners();

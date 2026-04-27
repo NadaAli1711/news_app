@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import '../api/api_manager.dart';
@@ -48,11 +49,6 @@ class SearchProvider extends ChangeNotifier {
         page: currentPage,
         pageSize: pageSize,
       );
-      if(articlesResponse?.status == 'error'){
-        errorMessage = articlesResponse?.message;
-        notifyListeners();
-        return;
-      }
       var currentArticles = articlesResponse?.articles ?? [];
 
       if (currentArticles.isEmpty) {
@@ -65,7 +61,10 @@ class SearchProvider extends ChangeNotifier {
         hasMoreData = false;
       }
     } catch (e) {
-      errorMessage = e.toString();
+      if(e is DioException){
+        errorMessage= e.message;
+      }else{
+      errorMessage = e.toString();}
     } finally {
       isLoading = false;
       isLoadingMore = false;
