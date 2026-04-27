@@ -15,14 +15,14 @@ class DioManager {
           BaseOptions(
             baseUrl: ApiConstants.dioBaseUrl,
             // queryParameters: {'apiKey': ApiConstants.apiKey},
-            // headers: {
-            //   'X-Api-Key': ApiConstants.apiKey
-            // }
-
+            headers: {'X-Api-Key': ApiConstants.apiKey},
           ),
         )
         ..interceptors.addAll(
-          {DioInterceptor(), PrettyDioLogger()},
+          {
+            // DioInterceptor(),
+            PrettyDioLogger(),
+          },
         ); // or use LogInterceptor() instead and i can change the default inside them
   static Future<SourceResponse> fetchSources({
     required BuildContext context,
@@ -37,6 +37,9 @@ class DioManager {
         },
       );
       return SourceResponse.fromJson(response.data);
+    } on DioException catch (e) {
+      String message = handleDioError(e);
+      throw e.copyWith(message: message);
     } catch (e) {
       rethrow;
     }
@@ -53,6 +56,9 @@ class DioManager {
         queryParameters: {'sources': sources},
       );
       return ArticlesResponse.fromJson(response.data);
+    } on DioException catch (e) {
+      String message = handleDioError(e);
+      throw e.copyWith(message: message);
     } catch (e) {
       rethrow;
     }
@@ -75,6 +81,9 @@ class DioManager {
       );
 
       return ArticlesResponse.fromJson(response.data);
+    } on DioException catch (e) {
+      String message = handleDioError(e);
+      throw e.copyWith(message: message);
     } catch (e) {
       rethrow;
     }

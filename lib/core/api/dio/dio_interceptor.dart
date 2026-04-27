@@ -22,13 +22,14 @@ class DioInterceptor extends InterceptorsWrapper {
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
     // TODO: implement onError
-    String message = _handleDioError(err);
+    String message = handleDioError(err);
     final updatedMessage = err.copyWith(message: message);
+    // send the new error as err is immutable so make new error with custom message
     super.onError(updatedMessage, handler);
   }
 }
 
-String _handleDioError(DioException error) {
+String handleDioError(DioException error) {
   switch (error.type) {
     case DioExceptionType.connectionTimeout:
     case DioExceptionType.sendTimeout:
