@@ -13,7 +13,7 @@ class DioManager {
   static final dio =
       Dio(
           BaseOptions(
-            baseUrl: ApiConstants.dioBaseUrl,
+            baseUrl: ApiConstants.fullBaseUrl,
             // queryParameters: {'apiKey': ApiConstants.apiKey},
             headers: {'X-Api-Key': ApiConstants.apiKey},
           ),
