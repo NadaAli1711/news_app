@@ -79,24 +79,24 @@ abstract class StatusCode {
   static const int internalServerError = 500;
 }
 
-// class DioInterceptor extends Interceptor {
-// @override
-//   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-//     // TODO: implement onRequest
-//     super.onRequest(options, handler);
-//     options.headers.addAll({
-//       'X-Api-Key': ApiConstants.apiKey
-//     });
-//   }
-//   @override
-//   void onResponse(Response<dynamic> response, ResponseInterceptorHandler handler) {
-//     // TODO: implement onResponse
-//     super.onResponse(response, handler);
-//   }
+// class DioInterceptor implements Interceptor {
 //   @override
 //   void onError(DioException err, ErrorInterceptorHandler handler) {
 //     // TODO: implement onError
-//     super.onError(err, handler);
+//     handler.next(err);
 //   }
 //
+//   @override
+//   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+//     // TODO: implement onRequest
+//     handler.next(options);
+//   }
+//
+//   @override
+//   void onResponse(Response<dynamic> response, ResponseInterceptorHandler handler) {
+//     // TODO: implement onResponse
+//     handler.next(response);
+//   }
+
+
 // }
